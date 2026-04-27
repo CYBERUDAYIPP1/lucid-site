@@ -36,15 +36,23 @@ products.forEach((p, index) => {
 function addToCart(index) {
   const size = document.getElementById(`size-${index}`).value;
 
-  cart.push({
-    ...products[index],
-    selectedSize: size
-  });
+  const existingItem = cart.find(
+    item => item.name === products[index].name && item.selectedSize === size
+  );
+
+  if (existingItem) {
+    existingItem.qty += 1;
+  } else {
+    cart.push({
+      ...products[index],
+      selectedSize: size,
+      qty: 1
+    });
+  }
 
   saveCart();
   updateCart();
 }
-
 // REMOVE TO CART
 function removeItem(index) {
   cart.splice(index, 1); // remove item
@@ -64,16 +72,46 @@ function updateCart() {
 
   cartItems.innerHTML = "";
 
+  let totalCount = 0;
+
   cart.forEach((item, index) => {
+    totalCount += item.qty;
+
     cartItems.innerHTML += `
       <div class="cart-item">
-        ${item.name} (${item.selectedSize}) - ₹${item.price}
-        <button onclick="removeItem(${index})">❌</button>
+        <div>
+          ${item.name} (${item.selectedSize}) <br>
+          ₹${item.price} x ${item.qty}
+        </div>
+
+        <div class="qty-box">
+          <button onclick="decreaseQty(${index})">➖</button>
+          <span>${item.qty}</span>
+          <button onclick="increaseQty(${index})">➕</button>
+        </div>
       </div>
     `;
   });
 
-  count.innerText = cart.length;
+  count.innerText = totalCount;
+}
+
+// QUANTITY ADD
+function increaseQty(index) {
+  cart[index].qty += 1;
+  saveCart();
+  updateCart();
+}
+
+function decreaseQty(index) {
+  cart[index].qty -= 1;
+
+  if (cart[index].qty <= 0) {
+    cart.splice(index, 1);
+  }
+
+  saveCart();
+  updateCart();
 }
 
 // TOGGLE CART

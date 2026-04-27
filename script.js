@@ -55,7 +55,7 @@ function updateCart() {
   cart.forEach(item => {
     cartItems.innerHTML += `
       <div class="cart-item">
-        ${item.name} - ₹${item.price}
+        ${item.name} (${item.selectedSize}) - ₹${item.price}
       </div>
     `;
   });
@@ -73,7 +73,7 @@ function orderNow() {
   let text = "Order from LUCID:%0A";
 
   cart.forEach(item => {
-    text += `${item.name} - ₹${item.price}%0A`;
+    text += `${item.name} (${item.selectedSize}) - ₹${item.price}%0A`;
   });
 
   window.open(`https://wa.me/91YOURNUMBER?text=${text}`);

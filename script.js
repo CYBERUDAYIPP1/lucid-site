@@ -4,7 +4,7 @@ const products = [
 {
 name:"T SHIRT",
 price:299,
-img:"https://kommodo.ai/i/0vbjW32wgIn5B1ptYurS",
+img:"images/LUCID TEE.jpg",
 sizes:["S","M","L","XL"]
 },
 {

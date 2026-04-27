@@ -30,7 +30,13 @@ productList.innerHTML += `
 
 // ADD TO CART
 function addToCart(index) {
-  cart.push(products[index]);
+  const size = document.getElementById(`size-${index}`).value;
+
+  cart.push({
+    ...products[index],
+    selectedSize: size
+  });
+
   saveCart();
   updateCart();
 }

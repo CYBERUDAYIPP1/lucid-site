@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial;
 }
 
 body {
@@ -10,7 +10,7 @@ body {
   color: #fff;
 }
 
-/* NAVBAR */
+/* NAV */
 nav {
   display: flex;
   justify-content: space-between;
@@ -40,7 +40,6 @@ nav {
 
 .hero p {
   color: #aaa;
-  margin-top: 10px;
 }
 
 /* PRODUCTS */
@@ -67,11 +66,18 @@ nav {
   border-radius: 10px;
 }
 
-.card h3 {
+/* SIZE DROPDOWN */
+select {
+  width: 100%;
+  padding: 8px;
   margin: 10px 0;
+  background: #000;
+  color: white;
+  border: 1px solid #333;
 }
 
-.card button {
+/* BUTTON */
+button {
   background: white;
   color: black;
   border: none;
@@ -102,27 +108,6 @@ nav {
   border-bottom: 1px solid #333;
   padding-bottom: 5px;
 }
-
-button {
-  margin-top: 15px;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  background: white;
-  color: black;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-select {
-  width: 100%;
-  padding: 8px;
-  margin: 10px 0;
-  background: #000;
-  color: white;
-  border: 1px solid #333;
-}
-
 
 /* FOOTER */
 footer {

@@ -2,9 +2,9 @@
 
 const products = [
 {
-name:"Lucid Black Tee",
-price:399,
-img:"https://via.placeholder.com/400x500",
+name:"T SHIRT",
+price:299,
+img:"https://ibb.co/Vcx9Q3kS/400x500",
 sizes:["S","M","L","XL"]
 },
 {

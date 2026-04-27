@@ -45,6 +45,13 @@ function addToCart(index) {
   updateCart();
 }
 
+// REMOVE TO CART
+function removeItem(index) {
+  cart.splice(index, 1); // remove item
+  saveCart();
+  updateCart();
+}
+
 // SAVE CART
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -57,10 +64,11 @@ function updateCart() {
 
   cartItems.innerHTML = "";
 
-  cart.forEach(item => {
+  cart.forEach((item, index) => {
     cartItems.innerHTML += `
       <div class="cart-item">
         ${item.name} (${item.selectedSize}) - ₹${item.price}
+        <button onclick="removeItem(${index})">❌</button>
       </div>
     `;
   });

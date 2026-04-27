@@ -13,17 +13,19 @@ if (localStorage.getItem("cart")) {
 }
 
 // LOAD PRODUCTS
-const productList = document.getElementById("product-list");
+productList.innerHTML += `
+  <div class="card">
+    <img src="${p.img}">
+    <h3>${p.name}</h3>
+    <p>₹${p.price}</p>
 
-products.forEach((p, index) => {
-  productList.innerHTML += `
-    <div class="card">
-      <img src="${p.img}">
-      <h3>${p.name}</h3>
-      <p>₹${p.price}</p>
-      <button onclick="addToCart(${index})">Add to Cart</button>
-    </div>
-  `;
+    <select id="size-${index}">
+      ${p.sizes.map(size => `<option value="${size}">${size}</option>`).join("")}
+    </select>
+
+    <button onclick="addToCart(${index})">Add to Cart</button>
+  </div>
+`;
 });
 
 // ADD TO CART

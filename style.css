@@ -114,6 +114,16 @@ button {
   font-weight: bold;
 }
 
+select {
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+  background: #000;
+  color: white;
+  border: 1px solid #333;
+}
+
+
 /* FOOTER */
 footer {
   text-align: center;

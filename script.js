@@ -1,8 +1,8 @@
 // PRODUCTS DATA
 const products = [
-  { name: "Lucid Tshirt", price: 299, img: "https://via.placeholder.com/300" },
-  { name: "Lucid Hoodie", price: 700, img: "https://via.placeholder.com/300" },
-  { name: "Oversized Shirt", price: 599, img: "https://via.placeholder.com/300" }
+  { name: "Lucid Tshirt", price: 299, img: "https://via.placeholder.com/300", sizes: ["S","M","L","XL"] },
+  { name: "Lucid Hoodie", price: 700, img: "https://via.placeholder.com/300", sizes: ["M","L","XL"] },
+  { name: "Oversized Shirt", price: 599, img: "https://via.placeholder.com/300", sizes: ["S","M","L"] }
 ];
 
 let cart = [];

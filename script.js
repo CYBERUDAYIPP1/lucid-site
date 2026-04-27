@@ -12,20 +12,24 @@ if (localStorage.getItem("cart")) {
   cart = JSON.parse(localStorage.getItem("cart"));
 }
 
-// LOAD PRODUCTS
-productList.innerHTML += `
-  <div class="card">
-    <img src="${p.img}">
-    <h3>${p.name}</h3>
-    <p>₹${p.price}</p>
+// GET PRODUCT LIST
+const productList = document.getElementById("product-list");
 
-    <select id="size-${index}">
-      ${p.sizes.map(size => `<option value="${size}">${size}</option>`).join("")}
-    </select>
+// SHOW PRODUCTS
+products.forEach((p, index) => {
+  productList.innerHTML += `
+    <div class="card">
+      <img src="${p.img}">
+      <h3>${p.name}</h3>
+      <p>₹${p.price}</p>
 
-    <button onclick="addToCart(${index})">Add to Cart</button>
-  </div>
-`;
+      <select id="size-${index}">
+        ${p.sizes.map(size => `<option value="${size}">${size}</option>`).join("")}
+      </select>
+
+      <button onclick="addToCart(${index})">Add to Cart</button>
+    </div>
+  `;
 });
 
 // ADD TO CART
@@ -52,6 +56,7 @@ function updateCart() {
   const count = document.getElementById("cart-count");
 
   cartItems.innerHTML = "";
+
   cart.forEach(item => {
     cartItems.innerHTML += `
       <div class="cart-item">

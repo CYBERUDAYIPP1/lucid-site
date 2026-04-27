@@ -5,119 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LUCID Clothing</title>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
-}
-
-body {
-  background: #0f0f0f;
-  color: #fff;
-}
-
-/* NAVBAR */
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 40px;
-  background: #000;
-}
-
-.logo {
-  font-size: 24px;
-  letter-spacing: 3px;
-  font-weight: bold;
-}
-
-.cart {
-  cursor: pointer;
-}
-
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 100px 20px;
-}
-
-.hero h1 {
-  font-size: 60px;
-}
-
-.hero p {
-  color: #aaa;
-  margin-top: 10px;
-}
-
-/* PRODUCTS */
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 40px;
-}
-
-.card {
-  background: #1a1a1a;
-  padding: 15px;
-  border-radius: 10px;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.card h3 {
-  margin: 10px 0;
-}
-
-.card button {
-  background: white;
-  color: black;
-  border: none;
-  padding: 10px;
-  width: 100%;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* CART POPUP */
-.cart-box {
-  position: fixed;
-  right: -100%;
-  top: 0;
-  width: 300px;
-  height: 100%;
-  background: #111;
-  padding: 20px;
-  transition: 0.3s;
-}
-
-.cart-box.active {
-  right: 0;
-}
-
-.cart-item {
-  margin: 10px 0;
-  border-bottom: 1px solid #333;
-  padding-bottom: 5px;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #777;
-}
-</style>
+<!-- LINK CSS -->
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -141,63 +30,15 @@ footer {
 <div class="cart-box" id="cartBox">
   <h2>Your Cart</h2>
   <div id="cart-items"></div>
+
+  <button onclick="orderNow()">Order via WhatsApp</button>
 </div>
 
 <!-- FOOTER -->
 <footer>© 2026 LUCID Clothing</footer>
 
-<script>
-// PRODUCTS DATA
-const products = [
-  { name: "Lucid Tshirt", price: 299, img: "https://via.placeholder.com/300" },
-  { name: "Lucid Hoodie", price: 700, img: "https://via.placeholder.com/300" },
-  { name: "Oversized Shirt", price: 599, img: "https://via.placeholder.com/300" }
-];
-
-let cart = [];
-
-// LOAD PRODUCTS
-const productList = document.getElementById("product-list");
-
-products.forEach((p, index) => {
-  productList.innerHTML += `
-    <div class="card">
-      <img src="${p.img}">
-      <h3>${p.name}</h3>
-      <p>₹${p.price}</p>
-      <button onclick="addToCart(${index})">Add to Cart</button>
-    </div>
-  `;
-});
-
-// ADD TO CART
-function addToCart(index) {
-  cart.push(products[index]);
-  updateCart();
-}
-
-// UPDATE CART
-function updateCart() {
-  const cartItems = document.getElementById("cart-items");
-  const count = document.getElementById("cart-count");
-
-  cartItems.innerHTML = "";
-  cart.forEach(item => {
-    cartItems.innerHTML += `
-      <div class="cart-item">
-        ${item.name} - ₹${item.price}
-      </div>
-    `;
-  });
-
-  count.innerText = cart.length;
-}
-
-// TOGGLE CART
-function toggleCart() {
-  document.getElementById("cartBox").classList.toggle("active");
-}
-</script>
+<!-- LINK JS -->
+<script src="script.js"></script>
 
 </body>
 </html>

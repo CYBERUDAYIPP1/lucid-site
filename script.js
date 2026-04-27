@@ -1,134 +1,123 @@
-// PRODUCTS DATA
+// script.js
+
 const products = [
-  { name: "Lucid Tshirt", price: 299, img: "https://via.placeholder.com/300", sizes: ["S","M","L","XL"] },
-  { name: "Lucid Hoodie", price: 700, img: "https://via.placeholder.com/300", sizes: ["M","L","XL"] },
-  { name: "Oversized Shirt", price: 599, img: "https://via.placeholder.com/300", sizes: ["S","M","L"] }
+{
+name:"Lucid Black Tee",
+price:399,
+img:"https://via.placeholder.com/400x500",
+sizes:["S","M","L","XL"]
+},
+{
+name:"Lucid Red Hoodie",
+price:799,
+img:"https://via.placeholder.com/400x500",
+sizes:["M","L","XL"]
+},
+{
+name:"Oversized Street Tee",
+price:599,
+img:"https://via.placeholder.com/400x500",
+sizes:["S","M","L"]
+},
+{
+name:"Lucid Cargo Fit",
+price:999,
+img:"https://via.placeholder.com/400x500",
+sizes:["M","L","XL"]
+}
 ];
 
 let cart = [];
 
-// LOAD CART FROM STORAGE
-if (localStorage.getItem("cart")) {
-  cart = JSON.parse(localStorage.getItem("cart"));
-}
-
-// GET PRODUCT LIST
 const productList = document.getElementById("product-list");
 
-// SHOW PRODUCTS
-products.forEach((p, index) => {
-  productList.innerHTML += `
-    <div class="card">
-      <img src="${p.img}">
-      <h3>${p.name}</h3>
-      <p>₹${p.price}</p>
+/* LOAD PRODUCTS */
+products.forEach((p,index)=>{
 
-      <select id="size-${index}">
-        ${p.sizes.map(size => `<option value="${size}">${size}</option>`).join("")}
-      </select>
+productList.innerHTML += `
+<div class="card reveal">
 
-      <button onclick="addToCart(${index})">Add to Cart</button>
-    </div>
-  `;
+<img src="${p.img}">
+
+<div class="card-content">
+<h3>${p.name}</h3>
+<p class="price">₹${p.price}</p>
+
+<select id="size-${index}">
+${p.sizes.map(size=>`<option>${size}</option>`).join("")}
+</select>
+
+<button onclick="addToCart(${index})">ADD TO CART</button>
+</div>
+
+</div>
+`;
+
 });
 
-// ADD TO CART
-function addToCart(index) {
-  const size = document.getElementById(`size-${index}`).value;
+/* ADD CART */
+function addToCart(index){
 
-  const existingItem = cart.find(
-    item => item.name === products[index].name && item.selectedSize === size
-  );
+const size = document.getElementById(`size-${index}`).value;
 
-  if (existingItem) {
-    existingItem.qty += 1;
-  } else {
-    cart.push({
-      ...products[index],
-      selectedSize: size,
-      qty: 1
-    });
-  }
+cart.push({
+...products[index],
+selectedSize:size
+});
 
-  saveCart();
-  updateCart();
-}
-// REMOVE TO CART
-function removeItem(index) {
-  cart.splice(index, 1); // remove item
-  saveCart();
-  updateCart();
-}
-
-// SAVE CART
-function saveCart() {
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-// UPDATE CART
-function updateCart() {
-  const cartItems = document.getElementById("cart-items");
-  const count = document.getElementById("cart-count");
-
-  cartItems.innerHTML = "";
-
-  let totalCount = 0;
-
-  cart.forEach((item, index) => {
-    totalCount += item.qty;
-
-    cartItems.innerHTML += `
-      <div class="cart-item">
-        <div>
-          ${item.name} (${item.selectedSize}) <br>
-          ₹${item.price} x ${item.qty}
-        </div>
-
-        <div class="qty-box">
-          <button onclick="decreaseQty(${index})">➖</button>
-          <span>${item.qty}</span>
-          <button onclick="increaseQty(${index})">➕</button>
-        </div>
-      </div>
-    `;
-  });
-
-  count.innerText = totalCount;
-}
-
-// QUANTITY ADD
-function increaseQty(index) {
-  cart[index].qty += 1;
-  saveCart();
-  updateCart();
-}
-
-function decreaseQty(index) {
-  cart[index].qty -= 1;
-
-  if (cart[index].qty <= 0) {
-    cart.splice(index, 1);
-  }
-
-  saveCart();
-  updateCart();
-}
-
-// TOGGLE CART
-function toggleCart() {
-  document.getElementById("cartBox").classList.toggle("active");
-}
-
-// WHATSAPP ORDER
-function orderNow() {
-  let text = "Order from LUCID:%0A";
-
-  cart.forEach(item => {
-    text += `${item.name} (${item.selectedSize}) - ₹${item.price}%0A`;
-  });
-
-  window.open(`https://wa.me/91YOURNUMBER?text=${text}`);
-}
-
-// INIT
 updateCart();
+}
+
+/* UPDATE CART */
+function updateCart(){
+
+const cartItems = document.getElementById("cart-items");
+const count = document.getElementById("cart-count");
+
+cartItems.innerHTML = "";
+
+cart.forEach((item)=>{
+
+cartItems.innerHTML += `
+<div class="cart-item">
+${item.name} (${item.selectedSize}) - ₹${item.price}
+</div>
+`;
+
+});
+
+count.innerText = cart.length;
+}
+
+/* TOGGLE CART */
+function toggleCart(){
+document.getElementById("cartBox").classList.toggle("active");
+}
+
+/* ORDER */
+function orderNow(){
+
+let text = "New Order - LUCID%0A%0A";
+
+cart.forEach(item=>{
+text += `${item.name} (${item.selectedSize}) - ₹${item.price}%0A`;
+});
+
+window.open(`https://wa.me/917025974683?text=${text}`);
+}
+
+/* SCROLL ANIMATION */
+window.addEventListener("scroll",()=>{
+
+document.querySelectorAll(".reveal").forEach(el=>{
+
+const top = el.getBoundingClientRect().top;
+const win = window.innerHeight;
+
+if(top < win - 80){
+el.classList.add("active");
+}
+
+});
+
+});

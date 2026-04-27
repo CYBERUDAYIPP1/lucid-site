@@ -87,6 +87,20 @@ button {
   font-weight: bold;
 }
 
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-item button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+
 /* CART */
 .cart-box {
   position: fixed;

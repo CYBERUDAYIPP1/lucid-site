@@ -1,44 +1,88 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUCID Clothing</title>
-
-<!-- LINK CSS -->
+<title>LUCID | Premium Streetwear</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- NAV -->
-<nav>
+<!-- NAVBAR -->
+<nav class="navbar">
   <div class="logo">LUCID</div>
-  <div class="cart" onclick="toggleCart()">🛒 (<span id="cart-count">0</span>)</div>
+
+  <ul class="nav-links">
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <div class="cart-btn" onclick="toggleCart()">
+    🛒 <span id="cart-count">0</span>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Stay Clear. Stay Lucid.</h1>
-  <p>Premium Streetwear Collection</p>
+  <div class="hero-content fade-in">
+    <h1>LUCID</h1>
+    <p class="tagline">Stay Clear. Stay Lucid.</p>
+    <p class="subtext">Built Different For The Streets.</p>
+    <a href="#products" class="hero-btn">SHOP NOW</a>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust reveal">
+  <div>✔ Premium Quality</div>
+  <div>✔ Streetwear Fit</div>
+  <div>✔ Fast Dispatch</div>
+  <div>✔ WhatsApp Support</div>
 </section>
 
 <!-- PRODUCTS -->
-<section class="products" id="product-list"></section>
+<section class="products-section" id="products">
+  <h2 class="section-title reveal">FEATURED DROP</h2>
+  <div class="products" id="product-list"></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about reveal" id="about">
+  <h2>WHY LUCID</h2>
+  <p>
+    LUCID is built for those who move different. Premium streetwear with bold energy,
+    clean fits, and confidence in every piece.
+  </p>
+</section>
+
+<!-- CONTACT -->
+<section class="contact reveal" id="contact">
+  <h2>CONTACT</h2>
+  <p>WhatsApp Orders Available</p>
+  <p>917025974683</p>
+</section>
 
 <!-- CART -->
 <div class="cart-box" id="cartBox">
-  <h2>Your Cart</h2>
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <span onclick="toggleCart()">✖</span>
+  </div>
+
   <div id="cart-items"></div>
 
-  <button onclick="orderNow()">Order via WhatsApp</button>
+  <button class="checkout-btn" onclick="orderNow()">
+    Order via WhatsApp
+  </button>
 </div>
 
 <!-- FOOTER -->
-<footer>© 2026 LUCID Clothing</footer>
+<footer>
+  © 2026 LUCID Clothing. All Rights Reserved.
+</footer>
 
-<!-- LINK JS -->
 <script src="script.js"></script>
-
 </body>
 </html>

@@ -1,29 +1,32 @@
 // script.js
 
-const products = [
+const categories = [
 {
 name:"T SHIRT",
-price:299,
-img:"images/LUCID TEE.jpg",
-sizes:["S","M","L","XL"]
+count:"12 ITEMS",
+img:"images/lucid-tee.jpg",
+link:"products.html?category=tshirt"
 },
+
 {
-name:"Lucid Red Hoodie",
-price:799,
-img:"https://via.placeholder.com/400x500",
-sizes:["M","L","XL"]
+name:"HOODIE",
+count:"8 ITEMS",
+img:"images/hoodie-banner.jpg",
+link:"products.html?category=hoodie"
 },
+
 {
-name:"Oversized Street Tee",
-price:599,
-img:"https://via.placeholder.com/400x500",
-sizes:["S","M","L"]
+name:"CARGO",
+count:"5 ITEMS",
+img:"images/cargo-banner.jpg",
+link:"products.html?category=cargo"
 },
+
 {
-name:"Lucid Cargo Fit",
-price:999,
-img:"https://via.placeholder.com/400x500",
-sizes:["M","L","XL"]
+name:"OVERSIZED",
+count:"10 ITEMS",
+img:"images/oversized-banner.jpg",
+link:"products.html?category=oversized"
 }
 ];
 
@@ -31,65 +34,29 @@ let cart = [];
 
 const productList = document.getElementById("product-list");
 
-/* LOAD PRODUCTS */
-products.forEach((p,index)=>{
+/* LOAD CATEGORY CARDS */
+categories.forEach(cat => {
 
 productList.innerHTML += `
-<div class="card reveal">
+<a href="${cat.link}" class="card reveal" style="text-decoration:none;color:white;">
 
-<img src="${p.img}">
+<img src="${cat.img}" alt="${cat.name}">
 
 <div class="card-content">
-<h3>${p.name}</h3>
-<p class="price">₹${p.price}</p>
+<h3>${cat.name}</h3>
+<p class="price">${cat.count}</p>
 
-<select id="size-${index}">
-${p.sizes.map(size=>`<option>${size}</option>`).join("")}
-</select>
-
-<button onclick="addToCart(${index})">ADD TO CART</button>
+<button>
+VIEW COLLECTION
+</button>
 </div>
 
-</div>
+</a>
 `;
 
 });
 
-/* ADD CART */
-function addToCart(index){
-
-const size = document.getElementById(`size-${index}`).value;
-
-cart.push({
-...products[index],
-selectedSize:size
-});
-
-updateCart();
-}
-
-/* UPDATE CART */
-function updateCart(){
-
-const cartItems = document.getElementById("cart-items");
-const count = document.getElementById("cart-count");
-
-cartItems.innerHTML = "";
-
-cart.forEach((item)=>{
-
-cartItems.innerHTML += `
-<div class="cart-item">
-${item.name} (${item.selectedSize}) - ₹${item.price}
-</div>
-`;
-
-});
-
-count.innerText = cart.length;
-}
-
-/* TOGGLE CART */
+/* CART TOGGLE */
 function toggleCart(){
 document.getElementById("cartBox").classList.toggle("active");
 }
@@ -97,10 +64,15 @@ document.getElementById("cartBox").classList.toggle("active");
 /* ORDER */
 function orderNow(){
 
+if(cart.length === 0){
+alert("Your cart is empty");
+return;
+}
+
 let text = "New Order - LUCID%0A%0A";
 
 cart.forEach(item=>{
-text += `${item.name} (${item.selectedSize}) - ₹${item.price}%0A`;
+text += `${item.name} - ₹${item.price}%0A`;
 });
 
 window.open(`https://wa.me/917025974683?text=${text}`);

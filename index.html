@@ -1,94 +1,87 @@
-const categories = [
-{
-name:"T SHIRT",
-count:"12 ITEMS",
-img:"images/LUCID TEE.jpg",
-link:"products.html?category=tshirt"
-},
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUCID | Premium Streetwear</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-{
-name:"HOODIE",
-count:"8 ITEMS",
-img:"images/hoodie-banner.jpg",
-link:"products.html?category=hoodie"
-},
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">LUCID</div>
 
-{
-name:"CARGO",
-count:"5 ITEMS",
-img:"images/cargo-banner.jpg",
-link:"products.html?category=cargo"
-},
+  <ul class="nav-links">
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 
-{
-name:"OVERSIZED",
-count:"10 ITEMS",
-img:"images/oversized-banner.jpg",
-link:"products.html?category=oversized"
-}
-];
+  <div class="cart-btn" onclick="toggleCart()">
+    🛒 <span id="cart-count">0</span>
+  </div>
+</nav>
 
-let cart = [];
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content fade-in">
+    <h1>LUCID</h1>
+    <p class="tagline">Stay Clear. Stay Lucid.</p>
+    <p class="subtext">Built Different For The Streets.</p>
+    <a href="#products" class="hero-btn">SHOP NOW</a>
+  </div>
+</section>
 
-const productList = document.getElementById("product-list");
+<!-- TRUST -->
+<section class="trust reveal">
+  <div>✔ Premium Quality</div>
+  <div>✔ Streetwear Fit</div>
+  <div>✔ Fast Dispatch</div>
+  <div>✔ WhatsApp Support</div>
+</section>
 
-/* LOAD CATEGORY CARDS */
-categories.forEach(cat => {
+<!-- COLLECTIONS -->
+<section class="products-section" id="products">
+  <h2 class="section-title reveal">SHOP COLLECTIONS</h2>
+  <div class="products" id="product-list"></div>
+</section>
 
-productList.innerHTML += `
-<a href="${cat.link}" class="card reveal" style="text-decoration:none;color:white;">
+<!-- ABOUT -->
+<section class="about reveal" id="about">
+  <h2>WHY LUCID</h2>
+  <p>
+    LUCID is built for those who move different. Premium streetwear with bold energy,
+    clean fits, and confidence in every piece.
+  </p>
+</section>
 
-<img src="${cat.img}">
+<!-- CONTACT -->
+<section class="contact reveal" id="contact">
+  <h2>CONTACT</h2>
+  <p>WhatsApp Orders Available</p>
+  <p>+91 7025974683</p>
+</section>
 
-<div class="card-content">
-<h3>${cat.name}</h3>
-<p class="price">${cat.count}</p>
+<!-- CART -->
+<div class="cart-box" id="cartBox">
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <span onclick="toggleCart()">✖</span>
+  </div>
 
-<button style="margin-top:10px;">
-VIEW COLLECTION
-</button>
+  <div id="cart-items"></div>
+
+  <button class="checkout-btn" onclick="orderNow()">
+    Order via WhatsApp
+  </button>
 </div>
 
-</a>
-`;
+<!-- FOOTER -->
+<footer>
+© 2026 LUCID Clothing. All Rights Reserved.
+</footer>
 
-});
-
-/* CART OPEN / CLOSE */
-function toggleCart(){
-document.getElementById("cartBox").classList.toggle("active");
-}
-
-/* OPTIONAL EMPTY ORDER */
-function orderNow(){
-
-if(cart.length === 0){
-alert("Your cart is empty");
-return;
-}
-
-let text = "New Order - LUCID%0A%0A";
-
-cart.forEach(item=>{
-text += `${item.name} - ₹${item.price}%0A`;
-});
-
-window.open(`https://wa.me/917025974683?text=${text}`);
-
-}
-
-/* SCROLL REVEAL */
-window.addEventListener("scroll",()=>{
-
-document.querySelectorAll(".reveal").forEach(el=>{
-
-const top = el.getBoundingClientRect().top;
-const win = window.innerHeight;
-
-if(top < win - 80){
-el.classList.add("active");
-}
-
-});
-
-});
+<script src="script.js"></script>
+</body>
+</html>
